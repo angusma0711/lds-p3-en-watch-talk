@@ -39,9 +39,9 @@ Start
 | Title | Watch & Talk · 動物 |
 | Subtitle | I Have A Pet · 一起讀故事 → 討論 → vocab → questions → frames → exit ticket |
 | Helper | 不用登入 · 不會問名字 · 只保存在這個裝置的這次 session |
-| Primary button | 開始 |
+| Primary button | 開始 · 一起讀故事 |
 | Footer note | 影片由老師播放 · 做完練習回到老師 |
-| Primary action | 開始 → Story |
+| Primary action | 開始 · 一起讀故事 → Story |
 
 ### 2.1 Story（Read with me · My Pets）
 
@@ -165,7 +165,7 @@ Do **not** show leaderboards, percentages that imply certification, or “You ar
 ```
 Watch & Talk · 動物
 不用登入 · 不會問名字 · 只保存在這個裝置的這次 session
-開始
+開始 · 一起讀故事
 一起讀故事 · My Pets
 App 先讀一句 → 你跟著說一句
 聽一句

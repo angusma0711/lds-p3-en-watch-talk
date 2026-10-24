@@ -79,7 +79,7 @@ Buffer: full S1–S23 echo plus the original blocks will run past 25–35 min. S
 ### Phase 1b — Read with me (6–8 min)
 | Teacher | Learner |
 |---|---|
-| After the song, open the app → 開始. Story shows *My Pets* as paragraphs. | Listen to one sentence, then echo it. |
+| After the song, open the app → 開始 · 一起讀故事. Story shows *My Pets* as paragraphs. | Listen to one sentence, then echo it. |
 | If audio fails: read the highlighted sentence once yourself. | Tap 聽一句 to hear it again. Tap the small animal picture to hear that word. |
 | Time short: tap 讀完了 · 去討論. Do not force all 23 sentences. | No typing. No student name. |
 
