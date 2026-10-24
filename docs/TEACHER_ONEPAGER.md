@@ -12,8 +12,8 @@
 | 用途 | 連結 |
 |---|---|
 | **Video** | https://www.youtube.com/watch?v=pWepfJ-8XU0 （Super Simple Songs — *I Have A Pet*） |
-| **App（本機）** | `file:///workspace/LDS/Learning Design Studio/projects/LDS-P3-EN-01/app/index.html` · 或在 `app/` 跑 `python3 -m http.server` |
-| **App（上線）** | https://angusma0711.github.io/lds-p3-en-watch-talk/ |
+| **App** | https://angusma0711.github.io/lds-p3-en-watch-talk/ |
+| **Repo** | https://github.com/angusma0711/lds-p3-en-watch-talk |
 
 目標動物：dog/狗 · cat/貓 · mouse/老鼠 · bird/鳥 · fish/魚 · lion/獅子  
 句子框：`I have a ___`
@@ -26,7 +26,13 @@
 「我們看一首歌，裏面有動物。先看、先聽，不用寫字。」
 
 **Video 後 → App**  
-「好，我們開 app。先看生字卡 vocab。」
+「好，我們開 app。先一起讀故事。App 讀一句，你跟著說一句。」
+
+**Story 卡住時**  
+「再按聽一句。」時間不夠就按「讀完了 · 去討論」，不用迫完全部 23 句。
+
+**討論**  
+「我們看問題，用口講，不用打字。」指圖即可。
 
 **Vocab 卡住時（只提示一次）**  
 「按下一張。」／「可以聽一聽。」
@@ -63,14 +69,14 @@
 
 ### 上課前
 - [ ] 網絡可用；YouTube 連結打得開  
-- [ ] 本機 app（上表 file:// 或 local server）在瀏覽器開過一次（試到 Start）  
+- [ ] App（https://angusma0711.github.io/lds-p3-en-watch-talk/）在瀏覽器開過一次（試到 Start）  
 - [ ] 音量合適；需要時備 headphones  
 - [ ] 後備：6 張動物紙卡（dog/狗…lion/獅子）放在旁邊  
 - [ ] 自己看過短稿（上面「你要說的話」）
 
 ### 上課中
 - [ ] 播完歌 → 開 app → 陪坐（不用手改簿）  
-- [ ] 依序：Vocab → Questions → Sentence frames → Exit → Done  
+- [ ] 依序：Story → 討論 → Vocab → Questions → Sentence frames → Exit → Done  
 - [ ] 卡住只用一至兩句提示；讓 app 給 instant feedback  
 - [ ] 很弱者：生字卡可再看一輪；Check 可只做 4 題
 
@@ -86,10 +92,12 @@
 **App 打不開 / 死機** → 改用紙卡：你說英文詞，學生指圖；再說 *I have a dog* 讓他跟著說一隻。  
 **學生不開口** → 接受「指圖」為成功；你說句型，他點頭或指即可，不要逼說完整句。  
 **學生只懂中文** → 指圖說一次英文詞 + 中文；立刻回到英文詞，不要變中文長課。  
-**時間不夠** → 跳過一題 Say it；一定要做 Exit 一題 star 就收工。
+**時間不夠** → Story 按「讀完了 · 去討論」；再跳過一題 Say it；一定要做 Exit 一題 star 就收工。
 
 ---
 
 ## 流程速記（分鐘）
 
-Watch 4–6 → Vocab 5–7 → Check 6–8 → Say it 5–7 → Exit 3–5 · **合共約 25–35**
+Watch 4–6 → Story 6–8 → 討論 3–5 → Vocab 5–7 → Check 6–8 → Say it 5–7 → Exit 3–5  
+
+全做會長過 25–35 分鐘。時間緊：Story 用「讀完了 · 去討論」縮短，Check 可只做 4 題，Say it 可留 1 句，Exit 仍要做。

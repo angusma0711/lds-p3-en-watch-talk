@@ -1,9 +1,10 @@
 # WEBAPP_CONTENT_SPEC — LDS-P3-EN-01 Watch & Talk（Animals / pets）
 
-**status:** drafted · **local build exists** (see `app/`)  
+**status:** drafted · static app is published  
 **Project:** LDS-P3-EN-01  
-**Purpose:** Content & screen spec + local static app. **Do not publish.** No Drive save / GitHub go-live until Angus OK.  
-**Local app:** `/workspace/LDS/Learning Design Studio/projects/LDS-P3-EN-01/app/index.html`  
+**Purpose:** Content & screen spec for the static app.  
+**Live app:** https://angusma0711.github.io/lds-p3-en-watch-talk/  
+**Repo:** https://github.com/angusma0711/lds-p3-en-watch-talk  
 **Constraints:** Static; **no accounts**; **no student PII / names**; **local session only** (e.g. `sessionStorage` / in-memory). No cloud analytics that identify learners.  
 **Language:** UI default Traditional Chinese; English kept for target words and educational terms (vocab, exit ticket, scaffold 等視自然程度保留).  
 **Practice note:** Practice-informed item bank only; no invented research claims.
@@ -14,6 +15,8 @@
 
 ```
 Start
+  → Story (Read with me — My Pets, S1–S23 in paragraphs P1–P3)
+  → 討論 (guiding questions Q1–Q8, teacher-led, no typed answers)
   → Vocab cards (6, swipe/next)
   → Questions (Q1–Q6; may configure to end at Q4 if fatigued — default all 6)
   → Sentence frames (2–3)
@@ -25,7 +28,7 @@ Start
 - Linear forward; Back allowed within Vocab / between Questions, but Exit ticket answers not editable after submit.
 - No login gate. No “enter your name” field anywhere.
 - Progress can live in `sessionStorage` for refresh-within-tab; clearing tab = fresh session.
-- Teacher URL only: `[APP_URL]`.
+- Teacher URL: https://angusma0711.github.io/lds-p3-en-watch-talk/
 
 ---
 
@@ -34,10 +37,42 @@ Start
 | Element | Copy (ZH UI) |
 |---|---|
 | Title | Watch & Talk · 動物 |
-| Subtitle | I Have A Pet · vocab → questions → sentence frames → exit ticket |
+| Subtitle | I Have A Pet · 一起讀故事 → 討論 → vocab → questions → frames → exit ticket |
 | Helper | 不用登入 · 不會問名字 · 只保存在這個裝置的這次 session |
 | Primary button | 開始 |
 | Footer note | 影片由老師播放 · 做完練習回到老師 |
+| Primary action | 開始 → Story |
+
+### 2.1 Story（Read with me · My Pets）
+
+Show **paragraphs** P1–P3 (continuous prose). Advance **one sentence** at a time (S1–S23). Highlight / underline the current sentence. Web Speech `speak()` reads the current sentence. Learner echoes, then taps 跟讀完了 · 下一句. No speech recognition and no typed echo.
+
+| Control | Copy |
+|---|---|
+| Title | 一起讀故事 · My Pets |
+| Helper | App 先讀一句 → 你跟著說一句 |
+| Hear | 聽一句 |
+| Echo done | 跟讀完了 · 下一句（last sentence: 跟讀完了 · 去討論） |
+| Previous | 上一句 |
+| Restart audio | 從頭聽 |
+| Skip | 讀完了 · 去討論 |
+
+Animal pictures (same SVG set) sit beside sentences that **name** dog, cat, mouse, bird, fish, or lion. Tap speaks that word. Target frame remains `I have a ___`.
+
+### 2.2 討論
+
+Teacher-led. No answer fields, no marking, no student name. Button: 繼續 · 去生字 → Vocab.
+
+| ID | Ask (EN) | 中文 / teacher note |
+|---|---|---|
+| Q1 | Who is Sam? | 誰是 Sam？故事裏的孩子 — 接受 “Sam” |
+| Q2 | Is the dog big or small? | 狗是大還是小？ |
+| Q3 | What colour is the cat? | 貓是什麼顏色？ |
+| Q4 | Can the bird sing? | 鳥會唱歌嗎？ |
+| Q5 | Say: I have a ___. | 學生選一隻動物說／指 |
+| Q6 | Do you have a pet? What is it? | 可用中文答；老師幫套 *I have a …* |
+| Q7 | Is a real lion a good pet at home? Why? | 接受中文；可帶 *A lion is big.* |
+| Q8 | Point to / say: fish or mouse — which is small? | 指一指或說：fish 還是 mouse，哪個小？ |
 
 ---
 
@@ -131,6 +166,17 @@ Do **not** show leaderboards, percentages that imply certification, or “You ar
 Watch & Talk · 動物
 不用登入 · 不會問名字 · 只保存在這個裝置的這次 session
 開始
+一起讀故事 · My Pets
+App 先讀一句 → 你跟著說一句
+聽一句
+跟讀完了 · 下一句
+上一句
+從頭聽
+讀完了 · 去討論
+討論
+老師帶問 · 口頭回答 · 不用在 app 打字 · 沒有對錯分數
+繼續 · 去生字
+返回故事
 影片由老師播放 · 做完練習回到老師
 下一張
 上一張
@@ -218,13 +264,14 @@ Describe only — **do not invent or paste copyrighted Super Simple Songs / YouT
 - Static HTML/JS or simple React static export.
 - Single URL, mobile-first, large tap targets (≥44px).
 - Offline-friendly nice-to-have; online OK for v1.
-- `[APP_URL]` placeholder in teacher docs until Angus approves Drive / GitHub Pages.
+- Live app: https://angusma0711.github.io/lds-p3-en-watch-talk/  
+- Repo: https://github.com/angusma0711/lds-p3-en-watch-talk
 
 ---
 
 ## 10. Acceptance checklist（content ready for build）
 
-- [x] Screen flow Start → Vocab → Q1–6 → Frames → Exit → Done  
+- [x] Screen flow Start → Story → 討論 → Vocab → Q1–6 → Frames → Exit → Done  
 - [x] 6 vocab rows with EN/ZH  
 - [x] 6 check items with answers + ZH hints  
 - [x] 3 sentence frames  
@@ -234,4 +281,4 @@ Describe only — **do not invent or paste copyrighted Super Simple Songs / YouT
 - [x] Image needs described without copyrighted assets  
 - [x] Optional TTS / pre-recorded noted  
 
-**Next:** Local app built under `app/`. Angus try locally → separate **publish OK** before Drive / GitHub Pages.
+**Next:** Try the live app at https://angusma0711.github.io/lds-p3-en-watch-talk/ (repo: https://github.com/angusma0711/lds-p3-en-watch-talk).

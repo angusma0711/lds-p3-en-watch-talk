@@ -436,6 +436,158 @@ button:disabled {
   flex: 1;
 }
 
+.story-title {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+  font-weight: 800;
+}
+
+.story-card .helper {
+  margin-bottom: 14px;
+}
+
+.story-prose p {
+  margin: 0 0 0.9em;
+  font-size: clamp(1.2rem, 4.4vw, 1.45rem);
+  line-height: 1.85;
+  font-weight: 600;
+}
+
+.story-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.story-sent.is-current {
+  background: #fff4c2;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+  padding: 0 3px;
+}
+
+.story-animal {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  margin: 0 4px;
+  padding: 0;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  overflow: hidden;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.story-animal svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.story-animal:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.story-controls {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 0 4px;
+  background: linear-gradient(to bottom, rgba(247, 244, 239, 0), var(--bg) 28%);
+  z-index: 2;
+}
+
+.discuss-point-label {
+  margin: 14px 0 8px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.discuss-animals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.discuss-animal {
+  min-height: var(--tap);
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  background: #fff;
+  padding: 6px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.discuss-animal .animal-art {
+  width: 100%;
+  max-width: 96px;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.discuss-animal:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.discuss-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.discuss-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fbfcfd;
+}
+
+.discuss-kicker {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.discuss-en {
+  margin: 0 0 4px;
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.discuss-zh,
+.discuss-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.discuss-note {
+  margin-top: 6px;
+  color: var(--accent-dark);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

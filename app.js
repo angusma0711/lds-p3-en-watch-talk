@@ -84,6 +84,64 @@
     correct: "bird",
   };
 
+  /* My Pets — canonical sentences S1–S23. Paragraphs are display groups only. */
+  const STORY = [
+    { text: "My name is Sam." },
+    { text: "I live in a small house." },
+    { text: "I love animals." },
+    { text: "I have a dog.", animal: "dog" },
+    { text: "My dog is big and brown.", animal: "dog" },
+    { text: "He likes to run and play with me." },
+    { text: "I have a cat.", animal: "cat" },
+    { text: "My cat is soft and white.", animal: "cat" },
+    { text: "She likes to sleep on my bed." },
+    { text: "I have a mouse.", animal: "mouse" },
+    { text: "My mouse is small and grey.", animal: "mouse" },
+    { text: "He likes to eat cheese." },
+    { text: "I have a bird.", animal: "bird" },
+    { text: "My bird can sing a happy song.", animal: "bird" },
+    { text: "I have a fish.", animal: "fish" },
+    { text: "My fish is orange.", animal: "fish" },
+    { text: "He swims in a big bowl." },
+    { text: "Look!" },
+    { text: "I have a lion too!", animal: "lion" },
+    { text: "My lion is not a real lion.", animal: "lion" },
+    { text: "It is a big toy." },
+    { text: "I love my pets." },
+    { text: "They make me happy every day." },
+  ];
+
+  /** Paragraph ranges [start, end) → P1 S1–S6, P2 S7–S14, P3 S15–S23. */
+  const STORY_PARAS = [
+    [0, 6],
+    [6, 14],
+    [14, 23],
+  ];
+
+  const DISCUSS = [
+    {
+      en: "Who is Sam?",
+      zh: "誰是 Sam？",
+      note: "故事裏的孩子 — 接受 “Sam”",
+    },
+    { en: "Is the dog big or small?", zh: "狗是大還是小？" },
+    { en: "What colour is the cat?", zh: "貓是什麼顏色？" },
+    { en: "Can the bird sing?", zh: "鳥會唱歌嗎？" },
+    { en: "Say: I have a ___.", zh: "學生選一隻動物說／指" },
+    {
+      en: "Do you have a pet? What is it?",
+      zh: "可用中文答；老師幫套 I have a …",
+    },
+    {
+      en: "Is a real lion a good pet at home? Why?",
+      zh: "接受中文；可帶 A lion is big.",
+    },
+    {
+      en: "Point to / say: fish or mouse — which is small?",
+      zh: "指一指或說：fish 還是 mouse，哪個小？",
+    },
+  ];
+
   /* ---------- Original SVG illustrations (not from song/YouTube) ---------- */
   function animalSVG(id) {
     const map = {
@@ -191,7 +249,8 @@
   /* ---------- State ---------- */
   function defaultState() {
     return {
-      screen: "start", // start | vocab | question | frame | exit | done
+      screen: "start", // start | story | discuss | vocab | question | frame | exit | done
+      storyIndex: 0,
       vocabIndex: 0,
       qIndex: 0,
       frameIndex: 0,
@@ -214,7 +273,15 @@
       const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return defaultState();
       const parsed = JSON.parse(raw);
-      return Object.assign(defaultState(), parsed);
+      const next = Object.assign(defaultState(), parsed);
+      if (
+        typeof next.storyIndex !== "number" ||
+        next.storyIndex < 0 ||
+        next.storyIndex >= STORY.length
+      ) {
+        next.storyIndex = 0;
+      }
+      return next;
     } catch (_) {
       return defaultState();
     }
@@ -237,10 +304,18 @@
   }
 
   /* ---------- TTS (optional) ---------- */
+  function stopSpeak() {
+    try {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
   function speak(text) {
     try {
       if (!window.speechSynthesis) return;
-      window.speechSynthesis.cancel();
+      stopSpeak();
       const u = new SpeechSynthesisUtterance(text);
       u.lang = "en-US";
       u.rate = 0.9;
@@ -252,18 +327,21 @@
 
   /* ---------- Helpers ---------- */
   function progressPct() {
-    // rough: vocab 6 + q 6 + frames 3 + exit 1 = 16 steps
+    // story 23 + discuss 1 + vocab 6 + questions 6 + frames 3 + exit 1 = 40
+    const total = 40;
     let step = 0;
-    if (state.screen === "start") step = 0;
-    else if (state.screen === "vocab") step = state.vocabIndex + 1;
-    else if (state.screen === "question") step = 6 + state.qIndex + 1;
-    else if (state.screen === "frame") step = 12 + state.frameIndex + 1;
-    else if (state.screen === "exit") step = 15;
-    else if (state.screen === "done") step = 16;
-    return Math.round((step / 16) * 100);
+    if (state.screen === "story") step = state.storyIndex + 1;
+    else if (state.screen === "discuss") step = 24;
+    else if (state.screen === "vocab") step = 24 + state.vocabIndex + 1;
+    else if (state.screen === "question") step = 30 + state.qIndex + 1;
+    else if (state.screen === "frame") step = 36 + state.frameIndex + 1;
+    else if (state.screen === "exit" || state.screen === "done") step = 40;
+    return Math.round((step / total) * 100);
   }
 
   function progressLabel() {
+    if (state.screen === "story") return `故事 ${state.storyIndex + 1}/23`;
+    if (state.screen === "discuss") return "討論";
     if (state.screen === "vocab") return `Vocab ${state.vocabIndex + 1}/6`;
     if (state.screen === "question") return `第 ${state.qIndex + 1} 題（共 6 題）`;
     if (state.screen === "frame") return `句子 ${state.frameIndex + 1}/3`;
@@ -290,7 +368,7 @@
         <div class="card hero">
           <div class="hero-emoji" aria-hidden="true">🐾</div>
           <h1>Watch & Talk · 動物</h1>
-          <p class="subtitle">I Have A Pet · vocab → questions → sentence frames → exit ticket</p>
+          <p class="subtitle">I Have A Pet · 一起讀故事 → 討論 → vocab → questions → frames → exit ticket</p>
           <div class="helper">不用登入 · 不會問名字 · 只保存在這個裝置的這次 session</div>
         </div>
         <button type="button" class="btn btn-primary" data-action="start">開始</button>
@@ -485,6 +563,91 @@
       </section>`;
   }
 
+  function renderStorySentence(index) {
+    const sentence = STORY[index];
+    const current = index === state.storyIndex;
+    const animalBtn = sentence.animal
+      ? `<button type="button" class="story-animal" data-action="tts-word" data-word="${sentence.animal}" aria-label="${sentence.animal}">${animalSVG(sentence.animal)}</button>`
+      : "";
+    return `<span class="story-sent${current ? " is-current" : ""}" id="story-sent-${index}"${current ? ' aria-current="true"' : ""}>${escapeHtml(sentence.text)}</span>${animalBtn}`;
+  }
+
+  function renderStory() {
+    const paras = STORY_PARAS.map(([start, end]) => {
+      const parts = [];
+      for (let i = start; i < end; i += 1) {
+        if (i > start) parts.push(" ");
+        parts.push(renderStorySentence(i));
+      }
+      return `<p>${parts.join("")}</p>`;
+    }).join("");
+    const onLast = state.storyIndex === STORY.length - 1;
+
+    return `
+      <section class="screen">
+        <div class="progress">
+          <span>${progressLabel()}</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:${progressPct()}%"></div></div>
+        </div>
+        <div class="card story-card">
+          <h1 class="story-title">一起讀故事 · My Pets</h1>
+          <div class="helper">App 先讀一句 → 你跟著說一句</div>
+          <div class="story-prose" lang="en">${paras}</div>
+        </div>
+        <div class="story-controls">
+          <div class="btn-row">
+            <button type="button" class="btn btn-ghost" data-action="story-hear">聽一句</button>
+            <button type="button" class="btn btn-primary" data-action="story-next">${onLast ? "跟讀完了 · 去討論" : "跟讀完了 · 下一句"}</button>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" data-action="story-prev" ${state.storyIndex === 0 ? "disabled" : ""}>上一句</button>
+            <button type="button" class="btn btn-secondary" data-action="story-restart">從頭聽</button>
+          </div>
+          <button type="button" class="btn btn-ghost" data-action="story-to-discuss">讀完了 · 去討論</button>
+        </div>
+      </section>`;
+  }
+
+  function renderDiscuss() {
+    const items = DISCUSS.map((q, i) => {
+      const note = q.note ? `<p class="discuss-note">老師提示：${escapeHtml(q.note)}</p>` : "";
+      return `
+        <li class="discuss-item">
+          <p class="discuss-kicker">Q${i + 1}</p>
+          <p class="discuss-en">${escapeHtml(q.en)}</p>
+          <p class="discuss-zh">${escapeHtml(q.zh)}</p>
+          ${note}
+        </li>`;
+    }).join("");
+
+    const pictures = VOCAB.map(
+      (id) => `
+        <button type="button" class="discuss-animal" data-action="tts-word" data-word="${ANIMALS[id].en}" aria-label="${ANIMALS[id].en}">
+          ${art(id, "discuss-art")}
+          <span>${ANIMALS[id].en}</span>
+        </button>`
+    ).join("");
+
+    return `
+      <section class="screen">
+        <div class="progress">
+          <span>${progressLabel()}</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:${progressPct()}%"></div></div>
+        </div>
+        <div class="card">
+          <h1 class="story-title">討論</h1>
+          <div class="helper">老師帶問 · 口頭回答 · 不用在 app 打字 · 沒有對錯分數</div>
+          <p class="discuss-point-label">指圖說 · 點一下可聽英文</p>
+          <div class="discuss-animals">${pictures}</div>
+          <ol class="discuss-list">${items}</ol>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" data-action="discuss-back-story">返回故事</button>
+          <button type="button" class="btn btn-primary" data-action="discuss-to-vocab">繼續 · 去生字</button>
+        </div>
+      </section>`;
+  }
+
   function stripHtml(html) {
     const d = document.createElement("div");
     d.innerHTML = html;
@@ -498,6 +661,14 @@
       .replace(/</g, "&lt;");
   }
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
   /* ---------- Render ---------- */
   function render() {
     const root = document.getElementById("app");
@@ -506,6 +677,12 @@
     switch (state.screen) {
       case "start":
         html = renderStart();
+        break;
+      case "story":
+        html = renderStory();
+        break;
+      case "discuss":
+        html = renderDiscuss();
         break;
       case "vocab":
         html = renderVocab();
@@ -527,6 +704,12 @@
     }
     root.innerHTML = html;
     saveState();
+    if (state.screen === "story") {
+      const current = document.getElementById("story-sent-" + state.storyIndex);
+      if (current && current.scrollIntoView) {
+        current.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
+    }
   }
 
   /* ---------- Actions ---------- */
@@ -554,8 +737,53 @@
   function onAction(action, el) {
     switch (action) {
       case "start":
+        state.screen = "story";
+        state.storyIndex = 0;
+        state.feedback = null;
+        state.answered = false;
+        render();
+        speak(STORY[0].text);
+        break;
+      case "story-hear":
+        speak(STORY[state.storyIndex].text);
+        break;
+      case "story-next":
+        if (state.storyIndex < STORY.length - 1) {
+          state.storyIndex += 1;
+          render();
+          speak(STORY[state.storyIndex].text);
+        } else {
+          stopSpeak();
+          state.screen = "discuss";
+          render();
+        }
+        break;
+      case "story-prev":
+        if (state.storyIndex > 0) {
+          state.storyIndex -= 1;
+          render();
+          speak(STORY[state.storyIndex].text);
+        }
+        break;
+      case "story-restart":
+        state.storyIndex = 0;
+        render();
+        speak(STORY[0].text);
+        break;
+      case "story-to-discuss":
+        stopSpeak();
+        state.screen = "discuss";
+        render();
+        break;
+      case "discuss-back-story":
+        state.screen = "story";
+        render();
+        speak(STORY[state.storyIndex].text);
+        break;
+      case "discuss-to-vocab":
         state.screen = "vocab";
         state.vocabIndex = 0;
+        state.showHint = false;
         state.feedback = null;
         state.answered = false;
         render();
