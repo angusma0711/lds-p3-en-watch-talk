@@ -55,13 +55,15 @@ https://www.youtube.com/watch?v=pWepfJ-8XU0
 | Phase | Name | Minutes | Where |
 |---|---|---|---|
 | 1 | Watch | 4–6 | YouTube (teacher plays) |
+| 1b | Read with me | 6–8 | App — My Pets, one sentence at a time |
+| 1c | 討論 | 3–5 | App — guiding questions, teacher-led, no typed answers |
 | 2 | Warm-up vocab | 5–7 | App — vocab cards |
 | 3 | Check | 6–8 | App — 4–6 questions |
 | 4 | Say it | 5–7 | App — sentence frames (+ optional oral) |
 | 5 | Exit | 3–5 | App — exit ticket → Done |
-| — | **Total** | **~25–35** | — |
+| — | **Total** | **longer than 25–35 if every story sentence is echoed** | — |
 
-Buffer: if video runs long or learner needs repeats, cut Say-it to 2 frames or skip optional TTS; keep Exit.
+Buffer: full S1–S23 echo plus the original blocks will run past 25–35 min. Shorten with「讀完了 · 去討論」, cut Say-it to 1–2 frames, or skip optional TTS. Keep Exit.
 
 ---
 
@@ -74,10 +76,24 @@ Buffer: if video runs long or learner needs repeats, cut Say-it to 2 frames or s
 | One short line before play: 「我們看一首歌，裏面有動物。」 | No writing. |
 | Do **not** pause to teach grammar mid-song unless learner is distressed. Optional: one replay of a short segment only if needed. | Stay with teacher; headphones optional. |
 
+### Phase 1b — Read with me (6–8 min)
+| Teacher | Learner |
+|---|---|
+| After the song, open the app → 開始. Story shows *My Pets* as paragraphs. | Listen to one sentence, then echo it. |
+| If audio fails: read the highlighted sentence once yourself. | Tap 聽一句 to hear it again. Tap the small animal picture to hear that word. |
+| Time short: tap 讀完了 · 去討論. Do not force all 23 sentences. | No typing. No student name. |
+
+### Phase 1c — 討論 (3–5 min)
+| Teacher | Learner |
+|---|---|
+| Ask Q1–Q8 aloud. Accept pointing, single words, or Chinese. | Answer orally. No typed answers in the app. |
+| For Q5 / Q8, use the animal pictures on the screen. | Point or say one animal. |
+| Then tap 繼續 · 去生字. | Move on with the teacher. |
+
 ### Phase 2 — Warm-up vocab (5–7 min)
 | Teacher | Learner |
 |---|---|
-| Open app → Start → Vocab cards. Sit beside learner. | Tap through 6 cards; look at picture + English + 中文. |
+| After 討論, stay on Vocab cards. Sit beside learner. | Tap through 6 cards; look at picture + English + 中文. |
 | Prompt once if stuck: 「按下一張。」 / 「聽一聽。」 | Optional tap-to-hear if available. |
 | Do **not** quiz orally yet; let app carry the cards. | No need to write. |
 
@@ -124,7 +140,8 @@ Buffer: if video runs long or learner needs repeats, cut Say-it to 2 frames or s
 | YouTube video | https://www.youtube.com/watch?v=pWepfJ-8XU0 — needs network |
 | Tablet or laptop | Browser; speaker or room audio |
 | Headphones | Optional (shared room / noise) |
-| App URL | `[APP_URL]` — placeholder until build/publish approved |
+| App URL | https://angusma0711.github.io/lds-p3-en-watch-talk/ |
+| Repo | https://github.com/angusma0711/lds-p3-en-watch-talk |
 | Fallback kit | Paper picture cards (6 animals) + oral yes/no / point questions (see §9) |
 
 No student accounts. No login. No student PII in app.
@@ -186,7 +203,7 @@ Weak P3 English learners often cannot hold open listening *and* open speaking. T
 
 ## 13. Out of scope (this draft)
 
-- App build / Drive save / GitHub Pages go-live (needs later Angus OK)
+- Drive save of Studio docs (the practice app is already at https://angusma0711.github.io/lds-p3-en-watch-talk/)
 - Spelling tests, worksheets to mark, homework pack
 - Invented research citations, prices, client names, testimonials
 - Student photos, names, or class lists inside materials
@@ -195,4 +212,4 @@ Weak P3 English learners often cannot hold open listening *and* open speaking. T
 
 ## 14. Review ask
 
-Angus: confirm video still OK; skim timing + outcomes; green-light web-app content spec for later build (no publish yet).
+Angus: confirm video still OK; skim timing now that Read with me sits before Vocab. Live app: https://angusma0711.github.io/lds-p3-en-watch-talk/ · repo: https://github.com/angusma0711/lds-p3-en-watch-talk

@@ -3,10 +3,11 @@
 Static practice app for a Hong Kong P3 learner (very weak English).  
 Teacher plays [I Have A Pet (Super Simple Songs)](https://www.youtube.com/watch?v=pWepfJ-8XU0), then opens this app.
 
+**Repo:** https://github.com/angusma0711/lds-p3-en-watch-talk  
 **Live:** https://angusma0711.github.io/lds-p3-en-watch-talk/
 
 - No accounts · no student names · sessionStorage only
-- Flow: Start → Vocab → Questions → Sentence frames → Exit ticket → Done
+- Flow: Start → Story (Read with me) → 討論 → Vocab → Questions → Sentence frames → Exit ticket → Done
 
 Studio docs live in Google Drive (Learning Design Studio / LDS-P3-EN-01 Watch & Talk Animals).
 
