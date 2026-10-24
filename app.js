@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "lds-p3-en-01-session";
+  const STORAGE_KEY = "lds-p3-en-01-session-v2";
 
   const ANIMALS = {
     dog: { en: "dog", zh: "狗" },
@@ -371,7 +371,7 @@
           <p class="subtitle">I Have A Pet · 一起讀故事 → 討論 → vocab → questions → frames → exit ticket</p>
           <div class="helper">不用登入 · 不會問名字 · 只保存在這個裝置的這次 session</div>
         </div>
-        <button type="button" class="btn btn-primary" data-action="start">開始</button>
+        <button type="button" class="btn btn-primary" data-action="start">開始 · 一起讀故事</button>
         <p class="footer-note">影片由老師播放 · 做完練習回到老師</p>
       </section>`;
   }
